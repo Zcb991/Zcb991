@@ -1,7 +1,7 @@
 
 
 <p align="center">
-Hi here 👋
+<b>Hi here 👋</b>
 </p>
 
 <hr>
