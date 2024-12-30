@@ -14,3 +14,13 @@ Here are some ideas to get you started:
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ...
 -->
+
+
+<p align="center"><a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Fira+Code&duration=2500&pause=1000&width=435&lines=print('hello+world');console.log('hello+world');println!(%22hello+world%22);.+.+.+.+.+." alt="Typing SVG" /></a></p>
+
+
+
+![Zcb991's GitHub stats](https://github-readme-stats.vercel.app/api?username=Zcb991)
+
+
+
