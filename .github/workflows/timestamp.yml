@@ -28,7 +28,7 @@ jobs:
 
       - name: Update Timestamp File
         run: |
-          current_time=$(date '+%Y-%m-%d %H:%M:%S')
+          current_time=$(TZ=Asia/Shanghai date '+%Y-%m-%d %H:%M:%S')
           echo "Updated on $current_time" > stamp.txt
 
       - name: Setup Git Configuration
@@ -38,6 +38,9 @@ jobs:
 
       - name: Commit and push changes
         run: |
+          commit_messages=("Update: ⏰" "Refresh: 🔄" "Renew: 🌟" "Revise: 📝" "Amend: 🛠" "Adjust: 🔧" "Change: 📈" "Modify: 🖊" "Transform: 🌀" "Revamp: 🌈")
+          random_msg=${commit_messages[$RANDOM % ${#commit_messages[@]}]}
+          
           git add stamp.txt
-          git commit -m "Update timestamp"
+          git commit -m "$random_msg - $current_time" || echo "No changes to commit."
           git push
