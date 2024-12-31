@@ -1,51 +1,34 @@
-name: Timestamp update
+name: Update Timestamp
 
 on:
-  push:
-    branches: [main]
-
   schedule:
-    - cron: '*/25 * * * *'
-
-  workflow_dispatch: 
-
-permissions:
-  contents: write 
+    # 每两小时运行一次
+    - cron: "0 */2 * * *"
 
 jobs:
-  update_commit:
-    runs-on: ubuntu-latest 
+  update-timestamp:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: Setup Debug Information
-        run: echo "::debug::Triggered by ref = ${{github.ref}}"
+      # 检出仓库代码
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Checkout Code
-        uses: actions/checkout@v3 
-        with:
-          persist-credentials: true 
-          fetch-depth: 0 
-
-      - name: Update Timestamp File
+      # 获取当前时间戳并写入文件
+      - name: Update timestamp
         run: |
           current_time=$(date '+%Y-%m-%d %H:%M:%S')
           echo "Updated on $current_time" > stamp.txt
 
-      - name: Setup Git Configuration
+      # 配置 Git 用户信息
+      - name: Configure Git
         run: |
           git config user.email "2952964392@qq.com"
           git config user.name "zcber"
 
-      - name: Prepare Commit
+      # 提交并推送更改
+      - name: Commit and push changes
         run: |
-          commit_messages=("Update: ⏰" "Refresh: 🔄" "Renew: 🌟" "Revise: 📝" "Amend: 🛠" "Adjust: 🔧" "Change: 📈" "Modify: 🖊" "Transform: 🌀" "Revamp: 🌈")
-          random_msg=${commit_messages[$RANDOM % ${#commit_messages[@]}]}
-
-          git add stamp.txt
-          git commit -m "$random_msg - $current_time" || echo "No changes to commit."
-
-      - name: GitHub Push
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          directory: '.'
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          git add timestamp.txt
+          git commit -m "Update timestamp"
+          git push
