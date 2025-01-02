@@ -13,9 +13,10 @@
 
 
 
-
-<p align="center"><img src="https://github-readme-stats.vercel.app/api?username=Zcb991&theme=blue-green" /></p>
-
+<div style="display: flex; justify-content: space-between; gap: 10px;">
+  <img src="https://github-readme-stats.vercel.app/api?username=Zcb991&theme=blue-green" />
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Zcb991&theme=blue-green" />
+</div>
 
 
 <picture align="center">
